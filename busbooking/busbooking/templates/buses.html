@@ -1,0 +1,40 @@
+<!-- templates/buses.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Buses</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Available Buses</h1>
+        <p class="text-center">
+            <a href="{% url 'home' %}" class="btn btn-link">Back to Home</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Type</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bus in buses %}
+                <tr>
+                    <td>{{ bus.id }}</td>
+                    <td>{{ bus.type }}</td>
+                    <td>${{ bus.price }}</td>
+                    <td>
+                        <a href="{% url 'booking-detail' bus.id %}" class="btn btn-primary">Book Now</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

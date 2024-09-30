@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'booking',
     'busbooking',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +60,7 @@ ROOT_URLCONF = 'busbooking.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'booking', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

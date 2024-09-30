@@ -1,0 +1,14 @@
+<!-- templates/rest_framework/horizontal/form.html -->
+<div class="form-horizontal">
+    <fieldset class="form-group">
+        {% block formset %}
+        {% for form in formset %}
+            <div class="form-group">
+                {{ form.label }}
+                {{ form.errors }}
+                {{ form }}
+            </div>
+        {% endfor %}
+        {% endblock %}
+    </fieldset>
+</div>

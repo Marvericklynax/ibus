@@ -9,4 +9,5 @@ router.register(r'payments', PaymentViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),
+    
 ]

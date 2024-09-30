@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payments</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Payments Page</h1>
+        <p class="text-center">
+            <a href="{% url 'home' %}" class="btn btn-link">Back to Home</a>
+        </p>
+
+        <form id="paymentForm">
+            <div class="form-group">
+                <label for="bookingId">Booking ID:</label>
+                <input type="text" class="form-control" id="bookingId" name="booking_id" required>
+            </div>
+
+            <div class="form-group">
+                <label for="token">Payment Token:</label>
+                <input type="text" class="form-control" id="token" name="token" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Pay Now</button>
+        </form>
+
+        <div id="paymentResponse" class="mt-3"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#paymentForm').on('submit', function(event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                const bookingId = $('#bookingId').val();
+                const token = $('#token').val();
+
+                $.ajax({
+                    url: '/payments/', // Ensure this matches your URL
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        booking_id: bookingId,
+                        token: token
+                    }),
+                    success: function(response) {
+                        $('#paymentResponse').html('<div class="alert alert-success">Payment successful!</div>');
+                        $('#paymentForm')[0].reset(); // Reset the form after successful submission
+                    },
+                    error: function(xhr) {
+                        $('#paymentResponse').html('<div class="alert alert-danger">Payment failed: ' + xhr.responseJSON.error + '</div>');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

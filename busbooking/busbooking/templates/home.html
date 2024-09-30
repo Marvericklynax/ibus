@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Booking System</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">  <!-- Ensure the path is correct -->
+    <script src="{% static 'js/script.js' %}"></script>  <!-- Ensure the path is correct -->
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Bus Booking System</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'bus-list' %}">Buses</a></li>
+                <li><a href="{% url 'booking-list' %}">Bookings</a></li>
+                <li><a href="{% url 'payment-list' %}">Payments</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="bus-selection">
+            <h2>Select a Bus</h2>
+            <div class="bus-list">
+                <div class="bus-item">
+                    <img src="https://via.placeholder.com/150" alt="Bus 1">
+                    <h3>Bus 1</h3>
+                    <p>Route: City A to City B</p>
+                    <button onclick="selectBus('Bus 1')">Select</button>
+                </div>
+                <div class="bus-item">
+                    <img src="https://via.placeholder.com/150" alt="Bus 2">
+                    <h3>Bus 2</h3>
+                    <p>Route: City B to City C</p>
+                    <button onclick="selectBus('Bus 2')">Select</button>
+                </div>
+                <div class="bus-item">
+                    <img src="https://via.placeholder.com/150" alt="Bus 3">
+                    <h3>Bus 3</h3>
+                    <p>Route: City C to City D</p>
+                    <button onclick="selectBus('Bus 3')">Select</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="booking-form" id="booking-form" style="display: none;">
+            <h2>Booking Form</h2>
+            <form id="form" onsubmit="submitBooking(event)">
+                <label for="passenger-name">Name:</label>
+                <input type="text" id="passenger-name" required>
+                
+                <label for="passenger-email">Email:</label>
+                <input type="email" id="passenger-email" required>
+                
+                <input type="hidden" id="selected-bus">
+                
+                <button type="submit">Book Now</button>
+            </form>
+        </section>
+
+        <div id="message"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Bus Booking System</p>
+    </footer>
+
+    <!-- Link to the JavaScript file -->
+    <script src="{% static 'js/script.js' %}"></script> <!-- Ensure the path matches your directory structure -->
+</body>
+</html>

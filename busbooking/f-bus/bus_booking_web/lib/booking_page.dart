@@ -92,13 +92,13 @@ class _BookingPageState extends State<BookingPage> {
             ElevatedButton(
               child: Text('Confirm Booking and Payment'),
               onPressed: () {
-                // Handle booking and payment confirmation
                 List<int> bookedSeats = [];
                 for (int i = 0; i < selectedSeats.length; i++) {
                   if (selectedSeats[i]) {
                     bookedSeats.add(i + 1);
                   }
                 }
+
                 if (bookedSeats.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text('Please select at least one seat')),

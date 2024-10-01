@@ -10,10 +10,9 @@ class Bus {
 
 // Simulate API call to fetch buses
 Future<List<Bus>> fetchBuses() async {
-  // Simulate a network delay
   await Future.delayed(Duration(seconds: 2));
 
-  // Return a list of buses (this would normally come from an API)
+  // Simulated bus data
   return [
     Bus(number: '123', route: 'Downtown to Uptown'),
     Bus(number: '456', route: 'Midtown to City Center'),
@@ -27,7 +26,7 @@ class BusListPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('Available Buses')),
       body: FutureBuilder<List<Bus>>(
-        future: fetchBuses(), // Call API to get buses here
+        future: fetchBuses(), // Call API to get buses
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
@@ -35,24 +34,21 @@ class BusListPage extends StatelessWidget {
             return Center(child: Text('Error: ${snapshot.error}'));
           }
 
-          // Get bus list from snapshot
           final buses = snapshot.data;
 
           if (buses == null || buses.isEmpty) {
             return Center(child: Text('No buses available at the moment.'));
           }
 
-          // Display the list of buses
           return ListView.builder(
             itemCount: buses.length,
             itemBuilder: (context, index) {
               final bus = buses[index];
               return ListTile(
-                title: Text(bus.number),
+                title: Text('Bus Number: ${bus.number}'),
                 subtitle: Text(bus.route),
                 onTap: () {
-                  // Handle navigation to booking page or details
-                  // Example: Navigator.push(...);
+                  Navigator.pushNamed(context, '/booking');
                 },
               );
             },
@@ -62,5 +58,3 @@ class BusListPage extends StatelessWidget {
     );
   }
 }
-
-void main() => runApp(MaterialApp(home: BusListPage()));

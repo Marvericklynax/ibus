@@ -22,7 +22,8 @@ class HomePage extends StatelessWidget {
           ElevatedButton(
             child: Text('Search Buses'),
             onPressed: () {
-              // Navigate to the bus list or search functionality
+              // Navigate to the bus list page
+              Navigator.pushNamed(context, '/busList');
             },
           ),
         ],
